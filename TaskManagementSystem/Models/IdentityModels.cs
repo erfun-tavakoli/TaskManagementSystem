@@ -12,13 +12,13 @@ namespace TaskManagementSystem.Models
     public class ApplicationUser : IdentityUser
     {
         public virtual ICollection<Project> Projects { get; set; }
-        public virtual ICollection<Task> Tasks { get; set; }
+        public virtual ICollection<Job> Tasks { get; set; }
         public DateTime DateJoined { get; set; }
 
         public ApplicationUser()
         {
             this.Projects = new HashSet<Project>();
-            this.Tasks = new HashSet<Task>();
+            this.Tasks = new HashSet<Job>();
             DateJoined = DateTime.Now;
         }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -33,7 +33,7 @@ namespace TaskManagementSystem.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Project>Projects { get; set; }
-        public DbSet<Task>Tasks { get; set; }
+        public DbSet<Job>Tasks { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

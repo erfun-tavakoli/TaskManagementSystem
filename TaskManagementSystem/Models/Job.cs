@@ -6,7 +6,7 @@ using System.Web;
 
 namespace TaskManagementSystem.Models
 {
-    public class Task
+    public class Job
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -23,7 +23,7 @@ namespace TaskManagementSystem.Models
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
 
-        public Task()
+        public Job()
         {
             DateCreated = DateTime.Now;
         }
