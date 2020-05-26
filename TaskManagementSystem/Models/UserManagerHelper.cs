@@ -50,6 +50,17 @@ namespace TaskManagementSystem.Models
             return false;
         }
 
+        public static void AddUserToRole(string roleName, string userName)
+        {
+            IdentityRole role = roleManager.FindByName(roleName);
+            ApplicationUser user = userManager.FindByName(userName);
+            if (role != null && user != null && !userManager.IsInRole(user.Id, roleName))
+            {
+                userManager.AddToRole(user.Id, roleName);
+            }
+            db.SaveChanges();
+        }
+
     }
 
 }
