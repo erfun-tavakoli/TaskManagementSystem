@@ -20,13 +20,11 @@ namespace TaskManagementSystem.Models
                 roleManager.Create(new IdentityRole
                 {
                     Name = roleName
-                }
-                );
+                });
+
                 db.SaveChanges();
             }
-
         }
-
 
         public static void DeleteRole(string roleName)
         {
@@ -36,9 +34,10 @@ namespace TaskManagementSystem.Models
             }
         }
 
-
-
-
+        public static bool UserIsInRole(string userId, string roleName)
+        {
+            return userManager.IsInRole(userId, roleName);
+        }
 
 
     }
