@@ -16,8 +16,6 @@ namespace TaskManagementSystem.Models
         public Boolean IsComplete { get; set; }
         public int CompletionPercentage { get; set; }
         public string Note { get; set; }
-        [Required]
-        public double DailyWage { get; set; }
         public DateTime DueDate { get; set; }
         public DateTime DateCompleted { get; set; }
         public string ApplicationUserId { get; set; }
