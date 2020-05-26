@@ -7,5 +7,11 @@ namespace TaskManagementSystem.Models
 {
     public class TaskManager
     {
+        static ApplicationDbContext db = new ApplicationDbContext();
+        
+        public static void CreateTask(string name)
+        {
+            
+        }
     }
 }

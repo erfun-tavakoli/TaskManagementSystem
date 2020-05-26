@@ -27,5 +27,10 @@ namespace TaskManagementSystem.Models
         {
             DateCreated = DateTime.Now;
         }
+        public Job(string title)
+        {
+            Title = title;
+            DateCreated = DateTime.Now;
+        }
     }
 }
