@@ -39,6 +39,16 @@ namespace TaskManagementSystem.Models
             return userManager.IsInRole(userId, roleName);
         }
 
+        public static bool RemoveUserFromRole(string userId, string roleName)
+        {
+            if (UserIsInRole(userId, roleName))
+            {
+                userManager.RemoveFromRole(userId, roleName);
+                return true;
+            }
+
+            return false;
+        }
 
     }
 
