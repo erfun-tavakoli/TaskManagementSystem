@@ -26,9 +26,21 @@ namespace TaskManagementSystem.Models
             }
 
         }
+
+
+        public static void DeleteRole(string roleName)
+        {
+            if (roleManager.RoleExists(roleName))
+            {
+                roleManager.Delete(new IdentityRole { Name = roleName });
+            }
+        }
+
+
+
+
+
+
     }
-
-
-
 
 }
