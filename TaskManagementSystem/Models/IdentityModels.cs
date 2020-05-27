@@ -35,7 +35,7 @@ namespace TaskManagementSystem.Models
         public DbSet<Project>Projects { get; set; }
         public DbSet<Job>Tasks { get; set; }
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("ProjectManagementDBConnectionString", throwIfV1Schema: false)
         {
         }
 
