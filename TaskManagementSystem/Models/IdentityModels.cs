@@ -43,7 +43,5 @@ namespace TaskManagementSystem.Models
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<TaskManagementSystem.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
