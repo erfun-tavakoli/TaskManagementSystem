@@ -125,6 +125,7 @@ namespace TaskManagementSystem.Controllers
             base.Dispose(disposing);
         }
 
+        //Remember to provide authorization for developers alone
         [HttpGet]
         public ActionResult GetAllTaskOfADeveloper()
         {
@@ -136,6 +137,15 @@ namespace TaskManagementSystem.Controllers
             return RedirectToAction("Index", "Jobs", currentUserTask);
         }
 
+        //Remember to provide authorization/role for project manager alone
+        [HttpGet]
+        public ActionResult GetAllProjectsAndTasks()
+        {
+            var userId = User.Identity.GetUserId();
+            var currentUser = db.Users.Find(userId);
+            var currentUserProjects = currentUser.Projects.OrderByDescending(p =>;
 
+            return RedirectToAction("Index", "Jobs", currentUserProjects);
+        }
     }
 }
