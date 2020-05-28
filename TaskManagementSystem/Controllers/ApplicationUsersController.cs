@@ -143,7 +143,8 @@ namespace TaskManagementSystem.Controllers
         {
             var userId = User.Identity.GetUserId();
             var currentUser = db.Users.Find(userId);
-            var currentUserProjects = currentUser.Projects.OrderByDescending(p =>;
+            var currentUserProjects = currentUser.Projects
+                .OrderByDescending(p => p.Jobs.Select(j => j.CompletionPercentage));
 
             return RedirectToAction("Index", "Jobs", currentUserProjects);
         }
