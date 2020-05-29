@@ -57,7 +57,7 @@ namespace TaskManagementSystem.Controllers
                 project.ApplicationUser = currentUser;
                 db.Projects.Add(project);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details",project);
             }
 
             //ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email", project.ApplicationUserId);
