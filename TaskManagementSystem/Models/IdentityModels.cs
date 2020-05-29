@@ -12,13 +12,13 @@ namespace TaskManagementSystem.Models
     public class ApplicationUser : IdentityUser
     {
         public virtual ICollection<Project> Projects { get; set; }
-        public virtual ICollection<Job> Tasks { get; set; }
+        public virtual ICollection<Job> Jobs { get; set; }
         public DateTime DateJoined { get; set; }
 
         public ApplicationUser()
         {
             this.Projects = new HashSet<Project>();
-            this.Tasks = new HashSet<Job>();
+            this.Jobs = new HashSet<Job>();
             DateJoined = DateTime.Now;
         }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

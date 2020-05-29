@@ -26,16 +26,28 @@ namespace TaskManagementSystem.Models
             }
         }
 
-        public static void DeleteProject(string Projectname)
+        public static void DeleteProject(int id)
         {
-            var project = db.Projects.Any(x => x.Title == Projectname);
+            var project = db.Projects.Any(p => p.Id == id);
 
             if (project)
             {
-                var pp = db.Projects.Find(Projectname);
+                var pp = db.Projects.Find(id);
                 db.Projects.Remove(pp);
                 db.SaveChanges();
             }
         }
+
+        //public static List<Project> GetAllProjectsForProjectManager(string managerId)
+        //{
+        //    ApplicationUser manager = db.Users.Find(managerId);
+
+        //    if (manager != null)
+        //    {
+        //        return manager.Projects.ToList();
+        //    }
+
+
+        //}
     }
 }

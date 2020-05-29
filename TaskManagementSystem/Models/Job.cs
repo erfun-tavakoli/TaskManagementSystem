@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -19,14 +20,15 @@ namespace TaskManagementSystem.Models
         public DateTime DueDate { get; set; }
         public DateTime DateCompleted { get; set; }
         public Priority? Priority { get; set; }
-        public string ApplicationUserId { get; set; }
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public virtual ICollection<ApplicationUser> Developers { get; set; }
         public int ProjectId { get; set; }
         public virtual Project Project { get; set; }
 
         public Job()
         {
             DateCreated = DateTime.Now;
+            Developers = new HashSet<ApplicationUser>();
         }
     }
 

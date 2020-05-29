@@ -131,7 +131,7 @@ namespace TaskManagementSystem.Controllers
         {
             var userId = User.Identity.GetUserId();
             var currentUser = db.Users.Find(userId);
-            var currentUserTasks = currentUser.Tasks;
+            var currentUserTasks = currentUser.Jobs;
 
             return RedirectToAction("Index", "Jobs", currentUserTasks);
         }
@@ -146,6 +146,5 @@ namespace TaskManagementSystem.Controllers
         //
         //    return RedirectToAction("Index", "Jobs", currentUserProjects);
         //}
-
     }
 }

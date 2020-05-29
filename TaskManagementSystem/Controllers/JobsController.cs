@@ -17,7 +17,7 @@ namespace TaskManagementSystem.Controllers
         // GET: Jobs
         public ActionResult Index()
         {
-            var jobs = db.Tasks.Include(j => j.ApplicationUser).Include(j => j.Project);
+            var jobs = db.Tasks.Include(j => j.Developers).Include(j => j.Project);
             return View(jobs.ToList());
         }
 
