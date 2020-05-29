@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -52,6 +53,8 @@ namespace TaskManagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                var currentUser = GetCurrentUser();
+                project.ApplicationUser = currentUser;
                 db.Projects.Add(project);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -127,6 +130,15 @@ namespace TaskManagementSystem.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        private ApplicationUser GetCurrentUser()
+        {
+            var a = User .Identity.GetUserId();
+            var b = db.Users.Find(a);
+
+            return b;
         }
     }
 }

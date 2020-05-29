@@ -184,6 +184,14 @@
     <Compile Include="Migrations\202005290306136_addPriorityToProjectsAndJobs.Designer.cs">
       <DependentUpon>202005290306136_addPriorityToProjectsAndJobs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005291153282_createControllers.cs" />
+    <Compile Include="Migrations\202005291153282_createControllers.Designer.cs">
+      <DependentUpon>202005291153282_createControllers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005291221197_MakeDeadlineColumnNullable.cs" />
+    <Compile Include="Migrations\202005291221197_MakeDeadlineColumnNullable.Designer.cs">
+      <DependentUpon>202005291221197_MakeDeadlineColumnNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -290,6 +298,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005290306136_addPriorityToProjectsAndJobs.resx">
       <DependentUpon>202005290306136_addPriorityToProjectsAndJobs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005291153282_createControllers.resx">
+      <DependentUpon>202005291153282_createControllers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005291221197_MakeDeadlineColumnNullable.resx">
+      <DependentUpon>202005291221197_MakeDeadlineColumnNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
