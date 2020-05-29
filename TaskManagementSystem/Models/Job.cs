@@ -18,6 +18,7 @@ namespace TaskManagementSystem.Models
         public string Note { get; set; }
         public DateTime DueDate { get; set; }
         public DateTime DateCompleted { get; set; }
+        public Priority? Priority { get; set; }
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
         public int ProjectId { get; set; }
@@ -27,5 +28,12 @@ namespace TaskManagementSystem.Models
         {
             DateCreated = DateTime.Now;
         }
+    }
+
+    public enum Priority
+    {
+        Low,
+        Average,
+        High
     }
 }

@@ -11,11 +11,8 @@ namespace TaskManagementSystem.Models
     {
         static ApplicationDbContext db = new ApplicationDbContext();
 
-
-
         public static void AddProject(string projectName, double budget, DateTime dateCreated)
         {
-
             var project = db.Projects.Any(x => x.Title == projectName);
 
             if (!project)
@@ -27,10 +24,7 @@ namespace TaskManagementSystem.Models
                 db.Projects.Add(e);
                 db.SaveChanges();
             }
-
         }
-
-
 
         public static void DeleteProject(string Projectname)
         {
@@ -41,16 +35,7 @@ namespace TaskManagementSystem.Models
                 var pp = db.Projects.Find(Projectname);
                 db.Projects.Remove(pp);
                 db.SaveChanges();
-
             }
         }
-
-
-
-
-
-
-
-
     }
 }

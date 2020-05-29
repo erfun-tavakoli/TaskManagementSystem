@@ -129,23 +129,23 @@ namespace TaskManagementSystem.Controllers
         [HttpGet]
         public ActionResult GetAllTaskOfADeveloper()
         {
-
             var userId = User.Identity.GetUserId();
             var currentUser = db.Users.Find(userId);
-            var currentUserTask = currentUser.Tasks;
+            var currentUserTasks = currentUser.Tasks;
 
-            return RedirectToAction("Index", "Jobs", currentUserTask);
+            return RedirectToAction("Index", "Jobs", currentUserTasks);
         }
 
         //Remember to provide authorization/role for project manager alone
-        [HttpGet]
-        public ActionResult GetAllProjectsAndTasks()
-        {
-            var userId = User.Identity.GetUserId();
-            var currentUser = db.Users.Find(userId);
-            var currentUserProjects = currentUser.Projects.OrderByDescending(p =>;
+        //[HttpGet]
+        //public ActionResult GetAllProjectsAndTasks()
+        //{
+        //    var userId = User.Identity.GetUserId();
+        //    var currentUser = db.Users.Find(userId);
+        //    var currentUserProjects = currentUser.Projects.OrderByDescending();
+        //
+        //    return RedirectToAction("Index", "Jobs", currentUserProjects);
+        //}
 
-            return RedirectToAction("Index", "Jobs", currentUserProjects);
-        }
     }
 }

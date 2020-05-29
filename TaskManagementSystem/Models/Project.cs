@@ -11,10 +11,10 @@ namespace TaskManagementSystem.Models
         public string Title { get; set; }
         public double Budget { get; set; }
         public DateTime DateCreated { get; set; }
+        public Priority? Priority { get; set; }
         public virtual ICollection<Job> Jobs { get; set; }
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
-
 
         public Project()
         {

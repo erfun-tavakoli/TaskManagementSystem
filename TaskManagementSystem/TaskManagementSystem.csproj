@@ -180,6 +180,10 @@
     <Compile Include="Migrations\202005261741533_initial.Designer.cs">
       <DependentUpon>202005261741533_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005290306136_addPriorityToProjectsAndJobs.cs" />
+    <Compile Include="Migrations\202005290306136_addPriorityToProjectsAndJobs.Designer.cs">
+      <DependentUpon>202005290306136_addPriorityToProjectsAndJobs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -283,6 +287,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202005261741533_initial.resx">
       <DependentUpon>202005261741533_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005290306136_addPriorityToProjectsAndJobs.resx">
+      <DependentUpon>202005290306136_addPriorityToProjectsAndJobs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
