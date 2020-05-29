@@ -22,10 +22,13 @@ namespace TaskManagementSystem.Models
         public virtual ApplicationUser ApplicationUser { get; set; }
         public int ProjectId { get; set; }
         public virtual Project Project { get; set; }
+        public virtual ICollection<Notification> Notifications { get; set; }
 
+        public int NotificationCount { get; set; }
         public Job()
         {
             DateCreated = DateTime.Now;
+            this.Notifications = new HashSet<Notification>();
         }
     }
 }

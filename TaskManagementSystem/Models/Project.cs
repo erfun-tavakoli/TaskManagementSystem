@@ -14,12 +14,14 @@ namespace TaskManagementSystem.Models
         public virtual ICollection<Job> Jobs { get; set; }
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
-
-
+        public virtual ICollection<Notification> Notifications { get; set; }
+        public int NotificationCount { get; set; }
         public Project()
         {
             this.Jobs = new HashSet<Job>();
             DateCreated = DateTime.Now;
+            this.Notifications = new HashSet<Notification>();
+
         }
     }
 }
