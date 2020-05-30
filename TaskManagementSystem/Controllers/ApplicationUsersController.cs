@@ -136,15 +136,6 @@ namespace TaskManagementSystem.Controllers
             return RedirectToAction("Index", "Jobs", currentUserTasks);
         }
 
-        //Remember to provide authorization/role for project manager alone
-        [HttpGet]
-        public ActionResult GetAllProjectsAndTasks()
-        {
-            var userId = User.Identity.GetUserId();
-            var currentUser = db.Users.Find(userId);
-            var currentUserProjects = currentUser.Projects
-            .OrderByDescending(p => p.Jobs.Select(j => j.CompletionPercentage));
-            return RedirectToAction("Index", "Jobs", currentUserProjects);
-        }
+      
     }
 }
