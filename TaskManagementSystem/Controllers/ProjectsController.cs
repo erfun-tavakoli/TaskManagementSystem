@@ -132,10 +132,20 @@ namespace TaskManagementSystem.Controllers
             base.Dispose(disposing);
         }
 
+        //Remember to provide authorization/role for project manager alone
+        [HttpGet]
+        public ActionResult GetAllProjectsAndTasks()
+        {
+            var currentUser = GetCurrentUser();
+            var currentUserProjects = db.Projects.Where(p => p.ApplicationUser.Id == currentUser.Id);
+            //.OrderByDescending(p => p.Jobs.Select(j => j.CompletionPercentage));
+            //return RedirectToAction("Index", "Projects", currentUserProjects);
+            return View(currentUserProjects);
+        }
 
         private ApplicationUser GetCurrentUser()
         {
-            var a = User .Identity.GetUserId();
+            var a = User.Identity.GetUserId();
             var b = db.Users.Find(a);
 
             return b;
