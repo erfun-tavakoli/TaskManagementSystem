@@ -49,7 +49,7 @@ namespace TaskManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Description,Comment,DateCreated,IsComplete,CompletionPercentage,Note,DueDate,DateCompleted,ApplicationUserId,ProjectId")] Job job)
+        public ActionResult Create([Bind(Include = "Id,Title,Description,Comment,DateCreated,IsComplete,CompletionPercentage,Note,Deadline,DateCompleted,ApplicationUserId,ProjectId")] Job job)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace TaskManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,Comment,DateCreated,IsComplete,CompletionPercentage,Note,DueDate,DateCompleted,ApplicationUserId,ProjectId")] Job job)
+        public ActionResult Edit([Bind(Include = "Id,Title,Description,Comment,DateCreated,IsComplete,CompletionPercentage,Note,Deadline,DateCompleted,ApplicationUserId,ProjectId")] Job job)
         {
             if (ModelState.IsValid)
             {

@@ -10,13 +10,13 @@
     <h4>Job</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.ApplicationUser.Email)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.ApplicationUser.Email)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.Project.Title)
@@ -83,11 +83,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DueDate)
+            @Html.DisplayNameFor(model => model.Deadline)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DueDate)
+            @Html.DisplayFor(model => model.Deadline)
         </dd>
 
         <dt>

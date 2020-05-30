@@ -17,8 +17,8 @@ namespace TaskManagementSystem.Models
         public Boolean IsComplete { get; set; }
         public int CompletionPercentage { get; set; }
         public string Note { get; set; }
-        public DateTime Deadline { get; set; }
-        public DateTime DateCompleted { get; set; }
+        public DateTime? Deadline { get; set; }
+        public DateTime? DateCompleted { get; set; }
         public Priority? Priority { get; set; }
         [ForeignKey("ApplicationUser")]
         public virtual ICollection<ApplicationUser> Developers { get; set; }
