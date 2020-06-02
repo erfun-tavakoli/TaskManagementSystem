@@ -1,0 +1,32 @@
+﻿@model List<TaskManagementSystem.Models.Project>
+
+<h2>Dashboard</h2>
+<br />
+<br />
+<h3>All Projects</h3>
+<ol>
+    @foreach (var project in Model)
+    {
+        <li>
+            @project.Title <br/>
+            
+            <ul>
+                @foreach(var job in project.Jobs)
+                {
+                    <li>
+                        @job.Title <br />
+
+                        <ol>
+                            @foreach(var developer in job.Developers)
+                            {
+                                <li>
+                                    @developer.UserName
+                                </li>
+                            }
+                        </ol>
+                    </li>
+                }
+            </ul>
+        </li>
+    }
+</ol>

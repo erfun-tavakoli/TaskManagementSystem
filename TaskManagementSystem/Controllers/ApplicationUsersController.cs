@@ -136,6 +136,14 @@ namespace TaskManagementSystem.Controllers
             return RedirectToAction("Index", "Jobs", currentUserTasks);
         }
 
-      
+        [HttpGet]
+        public ActionResult ManagerDashboard()
+        {
+            string userId = User.Identity.GetUserId();
+            ApplicationUser currentUser = db.Users.Find(userId);
+            List<Project> ProjectsOrderdByPriority = currentUser.Projects.OrderByDescending(p => (int)p.Priority).ToList();
+
+            return View(ProjectsOrderdByPriority);
+        }
     }
 }
