@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TaskManagementSystem.Models;
+using TaskManagementSystem.ViewModels;
 
 namespace TaskManagementSystem.Controllers
 {
@@ -138,11 +139,34 @@ namespace TaskManagementSystem.Controllers
         {
             var currentUser = GetCurrentUser();
             var currentUserProjects = db.Projects.Where(p => p.ApplicationUser.Id == currentUser.Id);
+
+            //var viewmodel = new ProjectTaskViewModel()
+            //{
+            //    Project = currentUserProjects.ToList(),
+            //    Tasks = currentUserProjects.All
+            //};
             //.OrderByDescending(p => p.Jobs.Select(j => j.CompletionPercentage));
             //return RedirectToAction("Index", "Projects", currentUserProjects);
             return View(currentUserProjects);
         }
 
+        [HttpGet]
+        public ActionResult GetTasksOrderByCompletion(int? projectId)
+        {
+            var result = db.Tasks.Where(t => t.ProjectId == projectId)
+                .OrderByDescending(t => t.CompletionPercentage);
+
+            return View(result);
+        }
+
+        [HttpGet]
+        public ActionResult GetAllTasksHideCompletedTasks(int? projectId)
+        {
+            var result = db.Tasks.Where(t => t.ProjectId == projectId & !t.IsComplete)
+                .OrderByDescending(t => t.CompletionPercentage);
+
+            return View(result);
+        }
         private ApplicationUser GetCurrentUser()
         {
             var a = User.Identity.GetUserId();
