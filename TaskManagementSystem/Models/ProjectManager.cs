@@ -61,6 +61,14 @@ namespace TaskManagementSystem.Models
             return totalProjectCost;
         }
 
+        public static double GetBudgetDifferenceAndCurrentExpense(int? Id)
+        {
+            var currentProject = db.Projects.Find(Id);
+            var currentCost = GetProjectCostToDate(Id);
+            var costDiff = currentProject.Budget - currentCost;
+            return costDiff;
+
+        }
 
         //public static List<Project> GetAllProjectsForProjectManager(string managerId)
         //{
