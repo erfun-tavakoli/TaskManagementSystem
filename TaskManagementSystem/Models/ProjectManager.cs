@@ -38,6 +38,30 @@ namespace TaskManagementSystem.Models
             }
         }
 
+        public static double GetProjectCostToDate(int? Id)
+        {
+            var currentProject = db.Projects.Find(Id);
+            var timeNow = DateTime.Now;
+            TimeSpan taskDuration;
+            double totalProjectCost = 0;
+            double totalCostPerDeveloper;
+
+            foreach (var task in currentProject.Jobs)
+            {
+                foreach (var developer in task.Developers)
+                {
+                    double developerRate = developer.DailyRate;
+                    taskDuration = timeNow - task.DateCreated;
+                    totalCostPerDeveloper = taskDuration.TotalDays * developerRate;
+                    totalProjectCost += totalCostPerDeveloper;
+                }
+
+            }
+
+            return totalProjectCost;
+        }
+
+
         //public static List<Project> GetAllProjectsForProjectManager(string managerId)
         //{
         //    ApplicationUser manager = db.Users.Find(managerId);
