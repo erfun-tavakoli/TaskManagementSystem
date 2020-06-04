@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -39,7 +40,6 @@ namespace TaskManagementSystem.Controllers
         // GET: Notifications/Create
         public ActionResult Create()
         {
-            ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email");
             return View();
         }
 
@@ -48,16 +48,17 @@ namespace TaskManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Description,Date,IsRead,ApplicationUserId")] Notification notification)
+        public ActionResult Create([Bind(Include = "Id,Description,ApplicationUserId")] Notification notification)
         {
             if (ModelState.IsValid)
             {
                 db.Notifications.Add(notification);
+                notification.Date = DateTime.Now;
+                notification.ApplicationUserId = User.Identity.GetUserId();
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email", notification.ApplicationUserId);
             return View(notification);
         }
 
@@ -73,7 +74,6 @@ namespace TaskManagementSystem.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email", notification.ApplicationUserId);
             return View(notification);
         }
 
@@ -82,7 +82,7 @@ namespace TaskManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Description,Date,IsRead,ApplicationUserId")] Notification notification)
+        public ActionResult Edit([Bind(Include = "Id,Description,Date,IsRead")] Notification notification)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,6 @@ namespace TaskManagementSystem.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email", notification.ApplicationUserId);
             return View(notification);
         }
 
