@@ -49,7 +49,7 @@ namespace TaskManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Description,Comment,DateCreated,IsComplete,CompletionPercentage,Note,Deadline,DateCompleted,ApplicationUserId,ProjectId")] Job job)
+        public ActionResult Create([Bind(Include = "Id,Title,Description,Comment,DateCreated,CompletionPercentage,Note,Deadline,DateCompleted,ApplicationUserId,ProjectId")] Job job)
         {
             if (ModelState.IsValid)
             {
@@ -91,6 +91,10 @@ namespace TaskManagementSystem.Controllers
             {
                 db.Entry(job).State = EntityState.Modified;
                 db.SaveChanges();
+                if (job.IsComplete)
+                {
+                    NotificationHelper.CreateJobCompletedNotificationForManager(job);
+                }
                 return RedirectToAction("Index");
             }
             //ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email", job.ApplicationUserId);

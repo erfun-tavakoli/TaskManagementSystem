@@ -12,7 +12,7 @@ namespace TaskManagementSystem.Models
             if (job.Deadline == null)
                 return false;
 
-            DateTime date = new DateTime();
+            DateTime date = DateTime.Now;
             return (DateTime.Compare((DateTime)job.Deadline, date)) >= 0;
         }
         
