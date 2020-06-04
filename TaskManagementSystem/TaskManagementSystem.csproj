@@ -208,6 +208,10 @@
     <Compile Include="Migrations\202006031732404_AddDailyRatePropertyToUsers.Designer.cs">
       <DependentUpon>202006031732404_AddDailyRatePropertyToUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006040113056_addIsReadPropertyToNotificationTable.cs" />
+    <Compile Include="Migrations\202006040113056_addIsReadPropertyToNotificationTable.Designer.cs">
+      <DependentUpon>202006040113056_addIsReadPropertyToNotificationTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -337,6 +341,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006031732404_AddDailyRatePropertyToUsers.resx">
       <DependentUpon>202006031732404_AddDailyRatePropertyToUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006040113056_addIsReadPropertyToNotificationTable.resx">
+      <DependentUpon>202006040113056_addIsReadPropertyToNotificationTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
