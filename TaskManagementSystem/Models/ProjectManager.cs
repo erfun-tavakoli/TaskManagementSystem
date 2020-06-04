@@ -70,6 +70,11 @@ namespace TaskManagementSystem.Models
 
         }
 
+        public static List<Job> GetAllUncompletedJobsThatPassedDeadline(ApplicationUser manager)
+        {
+            return manager.Projects.SelectMany(p => p.Jobs).Where(j => !j.IsComplete && TaskManager.CheckIfTaskPassedDeadline(j)).ToList();
+        }
+
         //public static List<Project> GetAllProjectsForProjectManager(string managerId)
         //{
         //    ApplicationUser manager = db.Users.Find(managerId);
