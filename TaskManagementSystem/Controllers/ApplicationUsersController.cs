@@ -145,5 +145,21 @@ namespace TaskManagementSystem.Controllers
 
             return View(ProjectsOrderdByPriority);
         }
+
+        [HttpGet]
+        public ActionResult ShowUncopletedTasksPassedDeadline(string userId)
+        {
+            if (userId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser manager = db.Users.Find(userId);
+            if (manager == null)
+            {
+                return HttpNotFound();
+            }
+            var result = ProjectManager.GetAllUncompletedJobsThatPassedDeadline(manager);
+            return View(result);
+        }
     }
 }

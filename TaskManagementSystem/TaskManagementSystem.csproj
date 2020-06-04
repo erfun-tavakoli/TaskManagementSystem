@@ -294,6 +294,7 @@
     <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Views\Projects\GetAllProjectsAndTasks.cshtml" />
     <Content Include="Views\ApplicationUsers\ManagerDashboard.cshtml" />
+    <Content Include="Views\ApplicationUsers\ShowUncopletedTasksPassedDeadline.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
