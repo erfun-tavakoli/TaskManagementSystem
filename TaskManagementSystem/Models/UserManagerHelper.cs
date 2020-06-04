@@ -35,12 +35,14 @@ namespace TaskManagementSystem.Models
                 roleManager.Delete(new IdentityRole { Name = roleName });
             }
         }
-
-
-
-
-
-
+        public static void DeleteUser(int Id)
+        {
+            var user = db.Users.Find(Id);
+            if(user != null)
+            {
+                db.Users.Remove(user);
+            }
+        }
     }
 
 }
