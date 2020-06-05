@@ -83,9 +83,10 @@
             @Html.DisplayFor(modelItem => item.DateCompleted)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+            @Html.ActionLink("Add Note to report a bug", "AddNoteToJob", new { jobId = item.Id }) |
         </td>
     </tr>
 }

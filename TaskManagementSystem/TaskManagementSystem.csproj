@@ -306,6 +306,7 @@
     <Content Include="Views\Notifications\Details.cshtml" />
     <Content Include="Views\Notifications\Edit.cshtml" />
     <Content Include="Views\Notifications\Index.cshtml" />
+    <Content Include="Views\Jobs\AddNoteToJob.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

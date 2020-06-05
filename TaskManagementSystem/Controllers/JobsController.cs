@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -135,6 +136,33 @@ namespace TaskManagementSystem.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult AddNoteToJob(int? jobId)
+        {
+            if (jobId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Job job = db.Tasks.Find(jobId);
+            if (job == null)
+            {
+                return HttpNotFound();
+            }
+            return View(job);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddNoteToJob([Bind(Include ="Note")] Job job)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(job).State = EntityState.Modified;
+                db.SaveChanges();
+                NotificationHelper.CreateBugReportedNotification(job, User.Identity.GetUserName());
+                return RedirectToAction("Index");
+            }
+            return View(job);
         }
     }
 }
