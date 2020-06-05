@@ -34,5 +34,10 @@ namespace TaskManagementSystem.Models
             db.Notifications.Add(notification);
             db.SaveChanges();
         }
+
+        public static int NumOfUnopenedNotifications(ApplicationUser user)
+        {
+            return user.Notifications.Count(n => !n.IsRead);
+        }
     }
 }

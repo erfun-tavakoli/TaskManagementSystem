@@ -140,10 +140,14 @@ namespace TaskManagementSystem.Controllers
         public ActionResult ManagerDashboard()
         {
             string userId = User.Identity.GetUserId();
-            ApplicationUser currentUser = db.Users.Find(userId);
-            List<Project> ProjectsOrderdByPriority = currentUser.Projects.OrderByDescending(p => (int)p.Priority).ToList();
+            ApplicationUser currentUser = db.Users.Include(u => u.Projects).First(u => u.Id == userId);
 
-            return View(ProjectsOrderdByPriority);
+            ManagerDashboardViewModel viewModel = new ManagerDashboardViewModel();
+            viewModel.Projects = currentUser.Projects.OrderByDescending(p => (int)p.Priority).ToList();
+            viewModel.NumOfUnreadNotifications = NotificationHelper.NumOfUnopenedNotifications(currentUser);
+            viewModel.UserId = userId;
+
+            return View(viewModel);
         }
 
         [HttpGet]

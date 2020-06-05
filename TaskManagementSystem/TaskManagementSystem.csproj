@@ -216,6 +216,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManagerDashboardViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\NotificationHelper.cs" />
@@ -307,6 +308,7 @@
     <Content Include="Views\Notifications\Edit.cshtml" />
     <Content Include="Views\Notifications\Index.cshtml" />
     <Content Include="Views\Jobs\AddNoteToJob.cshtml" />
+    <Content Include="Views\Notifications\ShowListOfNotifications.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
