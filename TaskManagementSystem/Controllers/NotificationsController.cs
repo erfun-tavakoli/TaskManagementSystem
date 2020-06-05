@@ -127,5 +127,11 @@ namespace TaskManagementSystem.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult ShowListOfNotifications(string userId)
+        {
+            var user = db.Users.Find(userId);
+            return View(user.Notifications);
+        }
     }
 }

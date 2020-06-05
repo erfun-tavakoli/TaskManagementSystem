@@ -1,23 +1,24 @@
-﻿@model List<TaskManagementSystem.Models.Project>
+﻿@model TaskManagementSystem.Models.ManagerDashboardViewModel
 
 <h2>Dashboard</h2>
 <br />
+<h3> @Html.ActionLink("Notifications", "ShowListOfNotifications", "Notifications", new { userId = Model.UserId }) @Model.NumOfUnreadNotifications</h3>
 <br />
 <h3>All Projects</h3>
 <ol>
-    @foreach (var project in Model)
+    @foreach (var project in Model.Projects)
     {
         <li>
-            @project.Title <br/>
-            
+            @project.Title <br />
+
             <ul>
-                @foreach(var job in project.Jobs)
+                @foreach (var job in project.Jobs)
                 {
                     <li>
                         @job.Title <br />
 
                         <ol>
-                            @foreach(var developer in job.Developers)
+                            @foreach (var developer in job.Developers)
                             {
                                 <li>
                                     @developer.UserName

@@ -22,6 +22,22 @@ namespace TaskManagementSystem.Models
             Notification notification = new Notification();
             notification.ApplicationUser = project.ApplicationUser;
             notification.Description = "The Task " + project.Title + " has been Completed";
+            db.Notifications.Add(notification);
+            db.SaveChanges();
+        }
+
+        public static void CreateBugReportedNotification(Job job, string developerName)
+        {
+            Notification notification = new Notification();
+            notification.ApplicationUserId = job.Project.ApplicationUserId;
+            notification.Description = "A bug has been reported on task " + job.Title + " By " + developerName + ".";
+            db.Notifications.Add(notification);
+            db.SaveChanges();
+        }
+
+        public static int NumOfUnopenedNotifications(ApplicationUser user)
+        {
+            return user.Notifications.Count(n => !n.IsRead);
         }
     }
 }
