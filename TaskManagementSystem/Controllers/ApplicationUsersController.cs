@@ -142,8 +142,14 @@ namespace TaskManagementSystem.Controllers
             string userId = User.Identity.GetUserId();
             ApplicationUser currentUser = db.Users.Include(u => u.Projects).First(u => u.Id == userId);
 
+            var projects = new List<Project>();
+            projects = currentUser.Projects.Where(p => p.Priority != null).OrderByDescending(p => (int)p.Priority).ToList();
+            var projectsNull = new List<Project>();
+            projects = currentUser.Projects.Where(p => p.Priority == null).ToList();
+            projects.AddRange(projectsNull);
             ManagerDashboardViewModel viewModel = new ManagerDashboardViewModel();
-            viewModel.Projects = currentUser.Projects.OrderByDescending(p => (int)p.Priority).ToList();
+            viewModel.Projects = projects;
+            //currentUser.Projects.OrderByDescending(p => (int)p.Priority).ToList();
             viewModel.NumOfUnreadNotifications = NotificationHelper.NumOfUnopenedNotifications(currentUser);
             viewModel.UserId = userId;
 
