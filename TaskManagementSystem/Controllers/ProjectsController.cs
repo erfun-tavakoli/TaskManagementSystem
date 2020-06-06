@@ -76,7 +76,7 @@ namespace TaskManagementSystem.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email", project.ApplicationUserId);
+            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", project.ApplicationUserId);
             return View(project);
         }
 
@@ -85,7 +85,7 @@ namespace TaskManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Budget,DateCreated,ApplicationUserId")] Project project)
+        public ActionResult Edit([Bind(Exclude = "Id,Title,Budget,DateCreated,ApplicationUserId")] Project project)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +93,7 @@ namespace TaskManagementSystem.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            //ViewBag.ApplicationUserId = new SelectList(db.ApplicationUsers, "Id", "Email", project.ApplicationUserId);
+            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", project.ApplicationUserId);
             return View(project);
         }
 
