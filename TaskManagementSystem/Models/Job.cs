@@ -27,6 +27,7 @@ namespace TaskManagementSystem.Models
 
         public Job()
         {
+            this.Priority = Models.Priority.Low;
             DateCreated = DateTime.Now;
             Developers = new HashSet<ApplicationUser>();
         }

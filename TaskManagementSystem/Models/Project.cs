@@ -19,6 +19,7 @@ namespace TaskManagementSystem.Models
 
         public Project()
         {
+            this.Priority = Models.Priority.Low;
             this.Jobs = new HashSet<Job>();
             DateCreated = DateTime.Now;
         }
