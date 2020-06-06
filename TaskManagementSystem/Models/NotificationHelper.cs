@@ -47,5 +47,27 @@ namespace TaskManagementSystem.Models
             notification.ApplicationUserId = project.ApplicationUserId;
             notification.Description = "The project " + project.Title + " has passed its deadline with " + ProjectManager.GetNumOfUnfinishedJobsForProject(project) + " unfinished tasks!";
         }
+
+        public static void TasksAboutToDue(ApplicationUser applicationUser)
+        {
+
+            var result = applicationUser.Jobs.Where(task => (task.Deadline - DateTime.Now).GetValueOrDefault().Days == 1).ToList();
+
+            foreach (var item in result)
+            {
+                CreateJobNotificationAboutToBeDue(item);
+            }
+             
+        }
+
+        public static void CreateJobNotificationAboutToBeDue(Job job)
+        {
+            Notification notification = new Notification();
+            notification.ApplicationUserId = db.Projects.Find(job.ProjectId).ApplicationUserId;
+
+            notification.Description = "The Task " + job.Title + " is due tomorrow";
+            db.Notifications.Add(notification);
+            db.SaveChanges();
+        }
     }
 }

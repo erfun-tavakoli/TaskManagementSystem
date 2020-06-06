@@ -161,6 +161,8 @@ namespace TaskManagementSystem.Controllers
         {
             string userId = User.Identity.GetUserId();
             ApplicationUser user = db.Users.Find(userId);
+            NotificationHelper.TasksAboutToDue(user);
+
             ViewBag.NumOfUnreadNotifications = NotificationHelper.NumOfUnopenedNotifications(user);
             return View(user);
         }
