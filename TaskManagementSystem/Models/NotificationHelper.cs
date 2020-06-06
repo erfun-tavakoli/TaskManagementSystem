@@ -39,5 +39,12 @@ namespace TaskManagementSystem.Models
         {
             return user.Notifications.Count(n => !n.IsRead);
         }
+
+        public static void CreateProjectPassedDeadlineWithUnfinishedJobsNotification(Project project)
+        {
+            Notification notification = new Notification();
+            notification.ApplicationUserId = project.ApplicationUserId;
+            notification.Description = "The project " + project.Title + " has passed its deadline with " + ProjectManager.GetNumOfUnfinishedJobsForProject(project) + " unfinished tasks!";
+        }
     }
 }

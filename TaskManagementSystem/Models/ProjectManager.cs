@@ -75,6 +75,25 @@ namespace TaskManagementSystem.Models
             return manager.Projects.SelectMany(p => p.Jobs).Where(j => !j.IsComplete && TaskManager.CheckIfTaskPassedDeadline(j)).ToList();
         }
 
+        public static bool ProjectHasPassedDeadlineWithUnfinishedJobs(Project project)
+        {
+            if (project.Deadline != null)
+            {
+                int compaireResult = DateTime.Compare((DateTime)project.Deadline, DateTime.Now);
+
+                if (compaireResult < 0)
+                    return false;
+
+                return !project.Jobs.All(j => j.IsComplete);
+            }
+            return false;
+        }
+
+        public static int GetNumOfUnfinishedJobsForProject(Project project)
+        {
+            return project.Jobs.Count(j => !j.IsComplete);
+        }
+
         //public static List<Project> GetAllProjectsForProjectManager(string managerId)
         //{
         //    ApplicationUser manager = db.Users.Find(managerId);
