@@ -5,15 +5,20 @@
 
 <h2>Home Page</h2>
 
-<h3>You have @ViewBag.NumOfUnreadNotifications @Html.ActionLink("Notifications", "ShowListOfNotifications", "Notifications", new { userId = Model.Id }) @ViewBag.NumOfUnreadNotifications unrad notifications</h3>
+<h3>You have @ViewBag.NumOfUnreadNotifications @Html.ActionLink("Notifications", "ShowListOfNotifications", "Notifications", new { userId = Model.Id }, null) @ViewBag.NumOfUnreadNotifications unread notifications</h3>
 
 <h3>Tasks</h3>
 <ol>
-    @foreach(var job in Model.Jobs)
+    @foreach (var job in Model.Projects)
     {
-        <li>
-            @job.Title <br />
-            @job.IsComplete
-        </li>
+        foreach (var item in job.Jobs)
+        {
+            <li>
+                @item.Title <br />
+            </li>
+
+        }
+
+
     }
 </ol>
