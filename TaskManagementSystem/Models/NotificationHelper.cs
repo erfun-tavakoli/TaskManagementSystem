@@ -11,7 +11,8 @@ namespace TaskManagementSystem.Models
         public static void CreateJobCompletedNotificationForManager(Job job)
         {
             Notification notification = new Notification();
-            notification.ApplicationUser = job.Project.ApplicationUser;
+            notification.ApplicationUserId = db.Projects.Find(job.ProjectId).ApplicationUserId;
+            
             notification.Description = "The Task " + job.Title + " has been Completed";
             db.Notifications.Add(notification);
             db.SaveChanges();
