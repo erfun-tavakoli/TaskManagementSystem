@@ -143,6 +143,14 @@ namespace TaskManagementSystem.Controllers
             return View(currentUserProjects);
         }
 
+        [HttpGet]
+        public ActionResult GetAProjectsTasks(int? Id)
+        {
+            //var currentUser = GetCurrentUser();
+            var tasks = db.Projects.Where(p => p.Id == Id).SelectMany(t => t.Jobs);
+
+            return View(tasks);
+        }
         private ApplicationUser GetCurrentUser()
         {
             var a = User.Identity.GetUserId();
