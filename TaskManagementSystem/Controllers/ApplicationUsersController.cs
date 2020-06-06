@@ -151,6 +151,14 @@ namespace TaskManagementSystem.Controllers
         }
 
         [HttpGet]
+        public ActionResult DeveloperHomePage()
+        {
+            string userId = User.Identity.GetUserId();
+            ApplicationUser user = db.Users.Find(userId);
+            ViewBag.NumOfUnreadNotifications = NotificationHelper.NumOfUnopenedNotifications(user);
+            return View(User);
+        }
+        [HttpGet]
         public ActionResult ShowUncopletedTasksPassedDeadline(string userId)
         {
             if (userId == null)

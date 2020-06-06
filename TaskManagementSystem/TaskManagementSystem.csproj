@@ -309,10 +309,10 @@
     <Content Include="Views\Notifications\Index.cshtml" />
     <Content Include="Views\Jobs\AddNoteToJob.cshtml" />
     <Content Include="Views\Notifications\ShowListOfNotifications.cshtml" />
+    <Content Include="Views\ApplicationUsers\DeveloperHomePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
