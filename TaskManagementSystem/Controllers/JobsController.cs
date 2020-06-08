@@ -11,6 +11,7 @@ using TaskManagementSystem.Models;
 
 namespace TaskManagementSystem.Controllers
 {
+    [Authorize(Roles = "Developer")]
     public class JobsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
