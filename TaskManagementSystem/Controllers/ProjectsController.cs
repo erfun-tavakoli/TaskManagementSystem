@@ -85,7 +85,7 @@ namespace TaskManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Exclude = "Id,Title,Budget,DateCreated,ApplicationUserId")] Project project)
+        public ActionResult Edit([Bind(Include = "Id,Title,Budget,ApplicationUserId")] Project project)
         {
             if (ModelState.IsValid)
             {
@@ -147,7 +147,7 @@ namespace TaskManagementSystem.Controllers
         public ActionResult GetAProjectsTasks(int? Id)
         {
             //var currentUser = GetCurrentUser();
-            var tasks = db.Projects.Where(p => p.Id == Id).SelectMany(t => t.Jobs);
+            var tasks = db.Projects.Where(p => p.Id == Id).SelectMany(t => t.Jobs).OrderByDescending(t => t.CompletionPercentage);
 
             return View(tasks);
         }

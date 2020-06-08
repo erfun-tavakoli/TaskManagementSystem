@@ -86,7 +86,7 @@ namespace TaskManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,Comment,DateCreated,IsComplete,CompletionPercentage,Deadline,DateCompleted,ApplicationUserId,ProjectId")] Job job)
+        public ActionResult Edit([Bind(Include = "Id,Title,Description,Comment,IsComplete,CompletionPercentage,Deadline,DateCompleted,ApplicationUserId,ProjectId")] Job job)
         {
             if (ModelState.IsValid)
             {

@@ -60,6 +60,11 @@ namespace TaskManagementSystem.Models
              
         }
 
+        //public static void IsCompleteTask(ApplicationUser applicationUser)
+        //{
+        //    var result = applicationUser.Jobs.Where(task => task.IsComplete || task.CompletionPercentage == 100);
+
+        //}
         public static void CreateJobNotificationAboutToBeDue(Job job)
         {
             Notification notification = new Notification();

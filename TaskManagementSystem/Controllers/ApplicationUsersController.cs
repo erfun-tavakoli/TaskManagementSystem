@@ -145,7 +145,7 @@ namespace TaskManagementSystem.Controllers
             var projects = new List<Project>();
             projects = currentUser.Projects.Where(p => p.Priority != null).OrderByDescending(p => (int)p.Priority).ToList();
             var projectsNull = new List<Project>();
-            projects = currentUser.Projects.Where(p => p.Priority == null).ToList();
+            projectsNull = currentUser.Projects.Where(p => p.Priority == null).ToList();
             projects.AddRange(projectsNull);
             ManagerDashboardViewModel viewModel = new ManagerDashboardViewModel();
             viewModel.Projects = projects;
@@ -167,8 +167,9 @@ namespace TaskManagementSystem.Controllers
             return View(user);
         }
         [HttpGet]
-        public ActionResult ShowUncopletedTasksPassedDeadline(string userId)
+        public ActionResult ShowUncopletedTasksPassedDeadline()
         {
+            var userId = User.Identity.GetUserId();
             if (userId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -178,8 +179,15 @@ namespace TaskManagementSystem.Controllers
             {
                 return HttpNotFound();
             }
+
             var result = ProjectManager.GetAllUncompletedJobsThatPassedDeadline(manager);
             return View(result);
+        }
+
+        public ActionResult DisplayProjectOverBudget()
+        {
+            var overBudgets = ProjectManager.GetProjectsOverBudget();
+            return View(overBudgets);
         }
     }
 }

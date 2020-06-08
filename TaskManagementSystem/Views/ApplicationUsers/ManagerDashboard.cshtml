@@ -5,6 +5,9 @@
 <h3> @Html.ActionLink("Notifications", "ShowListOfNotifications", "Notifications", new { userId = Model.UserId }, null) @Model.NumOfUnreadNotifications</h3>
 <br />
 <h3>All Projects</h3>
+<h5> @Html.ActionLink("Uncompleted Tasks Passed Deadline", "ShowUncopletedTasksPassedDeadline", "ApplicationUsers", new { userId = Model.UserId }, null) </h5>
+<h5> @Html.ActionLink("Projects over Budget", "DisplayProjectOverBudget", "ApplicationUsers", new { userId = Model.UserId }, null) </h5>
+
 <ol>
     @foreach (var project in Model.Projects)
     {

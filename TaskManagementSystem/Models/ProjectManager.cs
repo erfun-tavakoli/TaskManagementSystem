@@ -38,37 +38,45 @@ namespace TaskManagementSystem.Models
             }
         }
 
-        public static double GetProjectCostToDate(int? Id)
+        public static List<double> GetProjectsOverBudget()
         {
-            var currentProject = db.Projects.Find(Id);
             var timeNow = DateTime.Now;
             TimeSpan taskDuration;
             double totalProjectCost = 0;
             double totalCostPerDeveloper;
-
-            foreach (var task in currentProject.Jobs)
+            var projectsOverBudget = new List<double>();
+            foreach (var project in db.Projects)
             {
-                foreach (var developer in task.Developers)
+                foreach (var task in project.Jobs)
                 {
-                    double developerRate = developer.DailyRate;
-                    taskDuration = timeNow - task.DateCreated;
-                    totalCostPerDeveloper = taskDuration.TotalDays * developerRate;
-                    totalProjectCost += totalCostPerDeveloper;
+                    foreach (var developer in task.Developers)
+                    {
+                        double developerRate = developer.DailyRate;
+                        taskDuration = timeNow - task.DateCreated;
+                        totalCostPerDeveloper = taskDuration.TotalDays * developerRate;
+                        totalProjectCost += totalCostPerDeveloper;
+                    }
+
                 }
+                if (totalProjectCost > project.Budget )
+                {
+                    projectsOverBudget.Add(totalProjectCost);
 
+                }
             }
-
-            return totalProjectCost;
+            return projectsOverBudget;
         }
 
-        public static double GetBudgetDifferenceAndCurrentExpense(int? Id)
-        {
-            var currentProject = db.Projects.Find(Id);
-            var currentCost = GetProjectCostToDate(Id);
-            var costDiff = currentProject.Budget - currentCost;
-            return costDiff;
+        //public static double GetBudgetDifferenceAndCurrentExpense(int? Id)
+        //{
+        //    var currentProject = db.Projects.Find(Id);
+        //    var currentCost = GetProjectCostToDate();
 
-        }
+            
+        //    var costDiff = currentProject.Budget - currentCost;
+        //    return costDiff;
+
+        //}
 
         public static List<Job> GetAllUncompletedJobsThatPassedDeadline(ApplicationUser manager)
         {
