@@ -308,6 +308,7 @@
     <Content Include="Views\ApplicationUsers\DeveloperHomePage.cshtml" />
     <Content Include="Views\Projects\GetAProjectsTasks.cshtml" />
     <Content Include="Views\ApplicationUsers\DisplayProjectOverBudget.cshtml" />
+    <Content Include="Views\ApplicationUsers\DisplayProjectCost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

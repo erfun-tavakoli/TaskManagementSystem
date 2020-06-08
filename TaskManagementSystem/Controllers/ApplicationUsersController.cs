@@ -184,10 +184,18 @@ namespace TaskManagementSystem.Controllers
             return View(result);
         }
 
+        [HttpGet]
         public ActionResult DisplayProjectOverBudget()
         {
             var overBudget = ProjectManager.GetProjectsOverBudget();
             return View(overBudget);
+        }
+
+        [HttpGet]
+        public ActionResult DisplayProjectCost(int? Id)
+        {
+            ViewBag.Cost = ProjectManager.GetProjectCost(Id);
+            return View(ProjectManager.GetProjectCost(Id));
         }
     }
 }

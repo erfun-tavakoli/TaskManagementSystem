@@ -11,26 +11,27 @@
 <ol>
     @foreach (var project in Model.Projects)
     {
-        <li>
-            @project.Title <br />
+    <li>
+        @project.Title | @Html.ActionLink("Total Cost", "DisplayProjectCost", new { id = project.Id }) <br />
+        <ul>
+            @foreach (var job in project.Jobs)
+            {
 
-            <ul>
-                @foreach (var job in project.Jobs)
-                {
-                    <li>
-                        @job.Title <br />
+                <li>
+                    @job.Title <br />
 
-                        <ol>
-                            @foreach (var developer in job.Developers)
-                            {
-                                <li>
-                                    @developer.UserName
-                                </li>
-                            }
-                        </ol>
-                    </li>
-                }
-            </ul>
-        </li>
+                    <ol>
+                        @foreach (var developer in job.Developers)
+                        {
+                            <li>
+                                @developer.UserName
+                            </li>
+                        }
+                    </ol>
+                </li>
+            }
+        </ul>
+
+    </li>
     }
 </ol>
