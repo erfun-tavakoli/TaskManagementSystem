@@ -126,7 +126,7 @@ namespace TaskManagementSystem.Controllers
             base.Dispose(disposing);
         }
 
-        //Remember to provide authorization for developers alone
+        [Authorize(Roles ="Developer")]
         [HttpGet]
         public ActionResult GetAllTaskOfADeveloper()
         {
@@ -157,6 +157,7 @@ namespace TaskManagementSystem.Controllers
             return View(viewModel);
         }
 
+        [Authorize(Roles ="Developer")]
         [HttpGet]
         public ActionResult DeveloperHomePage()
         {

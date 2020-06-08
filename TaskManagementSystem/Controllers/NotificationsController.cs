@@ -11,6 +11,7 @@ using TaskManagementSystem.Models;
 
 namespace TaskManagementSystem.Controllers
 {
+    [Authorize (Roles ="Project Manager")]
     public class NotificationsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -128,7 +129,7 @@ namespace TaskManagementSystem.Controllers
             }
             base.Dispose(disposing);
         }
-
+        [Authorize(Roles ="Project Manager, Developer")]
         public ActionResult ShowListOfNotifications(string userId)
         {
             var user = db.Users.Find(userId);
