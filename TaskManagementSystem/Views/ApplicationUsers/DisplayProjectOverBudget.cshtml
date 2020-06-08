@@ -1,17 +1,17 @@
-﻿@model List<TaskManagementSystem.Models.Job>
+﻿@model List<TaskManagementSystem.Models.Project>
 
 <h1>Projects OVer Budget</h1>
 <br />
 
 <ol>
-    @foreach (var job in Model)
+    @foreach (var project in Model)
     {
-        <li>
-            @job.Title <br />
-            @job.Description <br />
-            @job.Deadline <br />
-            @job.Developers <br />
-        </li>
+    <li>
+        @project.Title <br />
+        @project.ApplicationUser.UserName <br />
+        @project.Deadline <br />
+        @project.Budget <br />
+    </li>
     }
 </ol>
 

@@ -38,45 +38,44 @@ namespace TaskManagementSystem.Models
             }
         }
 
-        public static List<double> GetProjectsOverBudget()
+        public static List<Project> GetProjectsOverBudget()
         {
-            var timeNow = DateTime.Now;
-            TimeSpan taskDuration;
-            double totalProjectCost = 0;
-            double totalCostPerDeveloper;
-            var projectsOverBudget = new List<double>();
+            var projectsOverBudget = new List<Project>();
             foreach (var project in db.Projects)
             {
-                foreach (var task in project.Jobs)
+                var projectCost = GetProjectCost(project.Id);
+                if (projectCost > project.Budget )
                 {
-                    foreach (var developer in task.Developers)
-                    {
-                        double developerRate = developer.DailyRate;
-                        taskDuration = timeNow - task.DateCreated;
-                        totalCostPerDeveloper = taskDuration.TotalDays * developerRate;
-                        totalProjectCost += totalCostPerDeveloper;
-                    }
-
-                }
-                if (totalProjectCost > project.Budget )
-                {
-                    projectsOverBudget.Add(totalProjectCost);
+                    projectsOverBudget.Add(project);
 
                 }
             }
             return projectsOverBudget;
         }
 
-        //public static double GetBudgetDifferenceAndCurrentExpense(int? Id)
-        //{
-        //    var currentProject = db.Projects.Find(Id);
-        //    var currentCost = GetProjectCostToDate();
-
+        public static double GetProjectCost(int? Id)
+        {
+            var currentProject = db.Projects.Find(Id);
             
-        //    var costDiff = currentProject.Budget - currentCost;
-        //    return costDiff;
+            var timeNow = DateTime.Now;
+            TimeSpan taskDuration;
+            double totalProjectCost = 0;
+            double totalCostPerDeveloper;
+            double developerRate;
 
-        //}
+            foreach (var task in currentProject.Jobs)
+            {
+                foreach (var developer in task.Developers)
+                {
+                    developerRate = developer.DailyRate;
+                    taskDuration = timeNow - task.DateCreated;
+                    totalCostPerDeveloper = taskDuration.TotalDays * developerRate;
+                    totalProjectCost += totalCostPerDeveloper;
+                }
+            }
+            return totalProjectCost;
+        }
+     
 
         public static List<Job> GetAllUncompletedJobsThatPassedDeadline(ApplicationUser manager)
         {

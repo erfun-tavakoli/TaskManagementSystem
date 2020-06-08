@@ -186,8 +186,8 @@ namespace TaskManagementSystem.Controllers
 
         public ActionResult DisplayProjectOverBudget()
         {
-            var overBudgets = ProjectManager.GetProjectsOverBudget();
-            return View(overBudgets);
+            var overBudget = ProjectManager.GetProjectsOverBudget();
+            return View(overBudget);
         }
     }
 }
