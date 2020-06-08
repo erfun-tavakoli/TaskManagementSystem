@@ -34,6 +34,7 @@ namespace TaskManagementSystem.Controllers
             {
                 return HttpNotFound();
             }
+            notification.IsRead = true;
             return View(notification);
         }
 
